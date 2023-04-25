@@ -6,16 +6,16 @@
 #    By: ageels <ageels@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/04/20 15:31:35 by ageels        #+#    #+#                  #
-#    Updated: 2023/04/20 15:31:43 by ageels        ########   odam.nl          #
+#    Updated: 2023/04/25 17:07:15 by ageels        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =  Aaaaand_OPEN
 
-FLAGS = -I. -Wall -Wextra -Werror -std=c++98
+FLAGS = -I. -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
 
 SRC = main.cpp\
-	Fixed.cpp\
+	ClapTrap.cpp\
 	
 OBJ_DIR = obj
 
