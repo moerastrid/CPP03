@@ -6,7 +6,7 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/20 15:31:46 by ageels        #+#    #+#                 */
-/*   Updated: 2023/04/25 21:05:21 by ageels        ########   odam.nl         */
+/*   Updated: 2023/04/25 21:05:45 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,29 @@
 
 class ClapTrap 
 {
-	private :
+	protected :
+		ClapTrap();											// default constructor
 		std::string			_name;
 		long unsigned int	_hp;
 		long unsigned int	_energy;
 		long unsigned int	_damage;
-		ClapTrap();											// default constructor
+
 		void			noEnergy(void);
 		void			noHP(void);
 
 	public :
 		ClapTrap(std::string name);
-		ClapTrap(std::string *name);
+		ClapTrap(std::string *str);
 		~ClapTrap();										// default destructor
 		ClapTrap(ClapTrap const & src);						// copy constructor
 
-		ClapTrap		&operator=(ClapTrap const &src);	// assingation operator
-		std::string		getName(void);
-		int				getHP(void);
-		int				getEnergy(void);
-		int				getDamage(void);
+		ClapTrap			&operator=(ClapTrap const &src);	// assingation operator
+		std::string			getName(void);
+		void				setName(std::string);
+		long unsigned int	getHP(void);
+		long unsigned int	getEnergy(void);
+		long unsigned int	getDamage(void);
+
 		void			attack(const std::string &target);
 		void			takeDamage(unsigned int amount);
 		void			beRepared(unsigned int amount);

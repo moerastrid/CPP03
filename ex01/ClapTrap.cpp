@@ -6,7 +6,7 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/20 15:35:53 by ageels        #+#    #+#                 */
-/*   Updated: 2023/04/25 20:40:01 by ageels        ########   odam.nl         */
+/*   Updated: 2023/04/25 20:58:27 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,20 @@ std::string	ClapTrap::getName(void) {
 	return (temp);
 }
 
-int	ClapTrap::getHP(void) {
+void	ClapTrap::setName(std::string name)
+{
+	this->_name = name;
+}
+
+long unsigned int	ClapTrap::getHP(void) {
 	return (this->_hp);
 }
 
-int	ClapTrap::getEnergy(void) {
+long unsigned int	ClapTrap::getEnergy(void) {
 	return (this->_energy);
 }
 
-int	ClapTrap::getDamage(void) {
+long unsigned int	ClapTrap::getDamage(void) {
 	return (this->_damage);
 }
 
