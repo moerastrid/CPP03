@@ -6,7 +6,7 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/20 15:32:42 by ageels        #+#    #+#                 */
-/*   Updated: 2023/05/01 14:45:50 by astrid        ########   odam.nl         */
+/*   Updated: 2023/05/02 15:49:03 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 #include "FragTrap.hpp"
 
 int main(void) {
-	FragTrap Frag("Frag");
+	FragTrap Frag("Fragger");
 	FragTrap Frog = Frag;
-	Frog.setName("Frog");
+	Frog.setName("Frogger");
 	FragTrap Sarah("Sally");
 	FragTrap group[3] = {Frag, Frog, Sarah};
 
@@ -37,13 +37,7 @@ int main(void) {
 		i++;
 	}
 
-	std::cout << "Hi this is " << Frag << std::endl;
+	std::cout << std::endl << "Hi this is " << Frag << std::endl;
 	std::cout << "Hi this is " << Frog << std::endl;
-	// std::cout << "Hi this is " << Serena << std::endl;
-	// std::cout << "Hi this is " << Copycat << std::endl;
-	// std::cout << "Hi this is " << Serano << std::endl;
-	// std::cout << "Hi this is \t" << a << std::endl;
+	std::cout << "Hi this is " << Sarah << std::endl << std::endl;
 }
-
-//void		(Harl::*harlptr[])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-//	std::string	complaints[] = {"DEBUG", "INFO", "WARNING", "ERROR"};

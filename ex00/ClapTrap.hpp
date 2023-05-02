@@ -6,7 +6,7 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/20 15:31:46 by ageels        #+#    #+#                 */
-/*   Updated: 2023/04/25 21:05:21 by ageels        ########   odam.nl         */
+/*   Updated: 2023/05/02 16:09:37 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ class ClapTrap
 		void			noHP(void);
 
 	public :
+		//ClapTrap(std::string const &name); 
 		ClapTrap(std::string name);
 		ClapTrap(std::string *name);
 		~ClapTrap();										// default destructor

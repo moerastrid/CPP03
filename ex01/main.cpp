@@ -6,7 +6,7 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/20 15:32:42 by ageels        #+#    #+#                 */
-/*   Updated: 2023/04/25 21:11:59 by ageels        ########   odam.nl         */
+/*   Updated: 2023/05/02 15:49:43 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main(void) {
 	Copycat.setName("Copycat");
 	ScavTrap Serano(Serena);
 	Serano.setName("Serano");
-	ScavTrap a(NULL);
+	ScavTrap a("AÀÁÄÂÆÃÅĀ");
 	ScavTrap group[] = {Serena, Copycat, Serano, a};
 
 	int	i = 0;

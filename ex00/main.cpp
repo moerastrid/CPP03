@@ -6,7 +6,7 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/20 15:32:42 by ageels        #+#    #+#                 */
-/*   Updated: 2023/04/25 17:55:03 by ageels        ########   odam.nl         */
+/*   Updated: 2023/05/02 16:10:13 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int main(void) {
 	ClapTrap b("erwt");
-	ClapTrap a(NULL);
+	ClapTrap a("PinO");
 
 	a.attack("me");
 	a.takeDamage(4);
@@ -23,7 +23,7 @@ int main(void) {
 	a.attack("b");
 	b.attack("you");
 	b.takeDamage(9);
-	b.beRepared(-1);
+	b.beRepared(2);
 	std::cout << "ct: " << a << std::endl;
 	std::cout << "ct: " << b << std::endl;
 }

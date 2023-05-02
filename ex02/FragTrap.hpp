@@ -6,7 +6,7 @@
 /*   By: astrid <astrid@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/01 14:13:37 by astrid        #+#    #+#                 */
-/*   Updated: 2023/05/01 14:37:25 by astrid        ########   odam.nl         */
+/*   Updated: 2023/05/02 15:45:41 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ class FragTrap : public ClapTrap
         FragTrap    &operator=(FragTrap const &src);
 
         void highFivesGuys(void);
+		void attack(const std::string &target);
+		void takeDamage(unsigned int amount);
+		void beRepared(unsigned int amount);
 };
 
 #endif

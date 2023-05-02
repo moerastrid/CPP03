@@ -6,13 +6,13 @@
 #    By: ageels <ageels@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/04/20 15:31:35 by ageels        #+#    #+#                  #
-#    Updated: 2023/05/01 14:27:22 by astrid        ########   odam.nl          #
+#    Updated: 2023/05/02 13:38:36 by ageels        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =  Repetitive_work
 
-FLAGS = -I. -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
+FLAGS = -I. -Wall -Wextra -Werror -std=c++98
 
 SRC = main.cpp\
 	ClapTrap.cpp\

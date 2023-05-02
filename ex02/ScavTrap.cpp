@@ -6,7 +6,7 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/25 18:04:03 by ageels        #+#    #+#                 */
-/*   Updated: 2023/05/01 15:57:22 by astrid        ########   odam.nl         */
+/*   Updated: 2023/05/02 15:45:17 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,38 @@ ScavTrap::ScavTrap(ScavTrap const &src) {
 
 void	ScavTrap::guardGate(void) {
 	std::cout << "ScavTrap " << this->_name << " is now in Gate keeper mode" << std::endl;
+}
+
+void	ScavTrap::attack(const std::string &target) {
+	if (this->_hp == 0)
+		return (this->noHP());
+	if (this->_energy-- == 0)
+		return (this->noEnergy());
+	std::cout << "ScavTrap " << this->_name << " attacks " << target << ", causing ";
+	std::cout << this->_damage << " points of damage!" << std::endl;
+}
+
+void	ScavTrap::takeDamage(unsigned int amount) {
+	if (this->_hp == 0)
+		return (this->noHP());
+	this->_hp -= amount;
+	if (this->_hp < 0)
+		this->_hp = 0;
+	std::cout << "ScavTrap " << this->_name << " takes " << amount;
+	std::cout << " damage, it has " << this->_hp << " HP left!" << std::endl;
+}
+
+void	ScavTrap::beRepared(unsigned int amount) {
+	if (this->_hp == 0)
+		return (this->noHP());
+	if (this->_energy-- == 0)
+		return (this->noEnergy());
+	this->_hp += amount;
+	if (this->_hp > MAX_HP)
+		this->_hp = MAX_HP;
+	std::cout << "ScavTrap " << this->_name << " repairs itself with " << amount << ", it now has ";
+	if (this->_hp != MAX_HP)
+		std::cout << this->_hp << " HP!" << std::endl;
+	else
+		std::cout << MAX_HP << "(max) HP!" << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/20 15:35:53 by ageels        #+#    #+#                 */
-/*   Updated: 2023/04/25 20:40:01 by ageels        ########   odam.nl         */
+/*   Updated: 2023/05/02 16:09:47 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,15 @@ ClapTrap::ClapTrap() {
 	this->_energy = 10;
 	this->_damage = 0;
 }
+
+//ClapTrap::ClapTrap(std::string const &name)
+//{
+//	this->_name = name;
+//	this->_hp = 10;
+//	this->_energy = 10;
+//	this->_damage = 0;
+//	std::cout << "ClapTrap constructor(const &name) called, creating: " << name << std::endl;
+//}
 
 ClapTrap::ClapTrap(std::string *name)
 {

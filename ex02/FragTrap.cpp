@@ -6,7 +6,7 @@
 /*   By: astrid <astrid@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/01 14:13:24 by astrid        #+#    #+#                 */
-/*   Updated: 2023/05/01 14:41:22 by astrid        ########   odam.nl         */
+/*   Updated: 2023/05/02 15:44:54 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,39 @@ FragTrap::FragTrap(FragTrap const &src) {
 
 void FragTrap::highFivesGuys(void) {
     std::cout << "\033[1;33m" << "FragTrap " << this->_name << " gives you a high five!" << "\033[0m" << std::endl;
+}
+
+
+void	FragTrap::attack(const std::string &target) {
+	if (this->_hp == 0)
+		return (this->noHP());
+	if (this->_energy-- == 0)
+		return (this->noEnergy());
+	std::cout << "\033[1;35m" << "FragTrap " << this->_name << " attacks " << target << ", causing ";
+	std::cout << this->_damage << " points of damage!" << "\033[0m" << std::endl;
+}
+
+void	FragTrap::takeDamage(unsigned int amount) {
+	if (this->_hp == 0)
+		return (this->noHP());
+	this->_hp -= amount;
+	if (this->_hp < 0)
+		this->_hp = 0;
+	std::cout << "\033[1;36m" << "FragTrap " << this->_name << " takes " << amount;
+	std::cout << " damage, it has " << this->_hp << " HP left!" << "\033[0m" << std::endl;
+}
+
+void	FragTrap::beRepared(unsigned int amount) {
+	if (this->_hp == 0)
+		return (this->noHP());
+	if (this->_energy-- == 0)
+		return (this->noEnergy());
+	this->_hp += amount;
+	if (this->_hp > MAX_HP)
+		this->_hp = MAX_HP;
+	std::cout << "\033[1;30m" << "FragTrap " << this->_name << " repairs itself with " << amount << ", it now has ";
+	if (this->_hp != MAX_HP)
+		std::cout << this->_hp << " HP!" << "\033[0m" << std::endl;
+	else
+		std::cout << MAX_HP << "(max) HP!" << "\033[0m" << std::endl;
 }
