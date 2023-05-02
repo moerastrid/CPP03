@@ -6,51 +6,32 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/20 15:35:53 by ageels        #+#    #+#                 */
-/*   Updated: 2023/05/02 16:09:47 by ageels        ########   odam.nl         */
+/*   Updated: 2023/05/02 19:35:38 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
 // P R I V A T E
-ClapTrap::ClapTrap() {
+ClapTrap::ClapTrap() : _name("default"), _hp(10), _energy(10), _damage(0) {
 	std::cout << "ClapTrap default constructor called" << std::endl;
-	this->_name = "default";
-	this->_hp = 10;
-	this->_energy = 10;
-	this->_damage = 0;
 }
 
-//ClapTrap::ClapTrap(std::string const &name)
-//{
-//	this->_name = name;
-//	this->_hp = 10;
-//	this->_energy = 10;
-//	this->_damage = 0;
-//	std::cout << "ClapTrap constructor(const &name) called, creating: " << name << std::endl;
-//}
+void	ClapTrap::noEnergy() {
+	std::cout << "Claptrap " << _name << " has no energy left!" << std::endl;
+}
 
-ClapTrap::ClapTrap(std::string *name)
-{
-	std::cout << "ClapTrap constructor(*name) called" << std::endl;
-	if (name == NULL)
-		this->_name = "NULL";
-	this->_hp = 10;
-	this->_energy = 10;
-	this->_damage = 0;
+void	ClapTrap::noHP() {
+	std::cout << "Claptrap " << _name << " has no HP left!" << std::endl;
 }
 
 // P U B L I C
-ClapTrap::ClapTrap(std::string name) {
+ClapTrap::ClapTrap(std::string name) : _name(name), _hp(10), _energy(10), _damage(0) {
 	std::cout << "ClapTrap constructor(name) called, creating: " << name << std::endl;
-	this->_name = name;
-	this->_hp = 10;
-	this->_energy = 10;
-	this->_damage = 0;
 }
 
 ClapTrap::~ClapTrap() {
-	std::cout << "ClapTrap " << this->_name << ": default destructor called" << std::endl;
+	std::cout << "ClapTrap " << _name << ": default destructor called" << std::endl;
 }
 
 ClapTrap	&ClapTrap::operator=(ClapTrap const &src)
@@ -68,63 +49,56 @@ ClapTrap::ClapTrap(ClapTrap const & src) {
 	*this = src;
 }
 
-std::string	ClapTrap::getName(void) {
-	std::string temp = this->_name;
-	return (temp);
+std::string	ClapTrap::getName() {
+	return (_name);
 }
 
-int	ClapTrap::getHP(void) {
-	return (this->_hp);
+int	ClapTrap::getHP() {
+	return (_hp);
 }
 
-int	ClapTrap::getEnergy(void) {
-	return (this->_energy);
+int	ClapTrap::getEnergy() {
+	return (_energy);
 }
 
-int	ClapTrap::getDamage(void) {
-	return (this->_damage);
-}
-
-void	ClapTrap::noEnergy(void) {
-	std::cout << "Claptrap " << this->_name << " has no energy left!" << std::endl;
-}
-
-void	ClapTrap::noHP(void) {
-	std::cout << "Claptrap " << this->_name << " has no HP left!" << std::endl;
+int	ClapTrap::getDamage() {
+	return (_damage);
 }
 
 void	ClapTrap::attack(const std::string &target) {
-	if (this->_hp == 0)
-		return (this->noHP());
-	if (this->_energy-- == 0)
-		return (this->noEnergy());
-	std::cout << "ClapTrap " << this->_name << " attacks " << target << ", causing ";
-	std::cout << this->_damage << " points of damage!" << std::endl;
+	if (_hp == 0)
+		return (noHP());
+	if (_energy == 0)
+		return (noEnergy());
+	_energy--;
+	std::cout << "ClapTrap " << _name << " attacks " << target << ", causing ";
+	std::cout << _damage << " points of damage!" << std::endl;
 }
 
-void	ClapTrap::takeDamage(unsigned int amount) {
-	if (this->_hp == 0)
-		return (this->noHP());
-	this->_hp -= amount;
-	if (this->_hp < 0)
-		this->_hp = 0;
-	std::cout << "ClapTrap " << this->_name << " takes " << amount;
-	std::cout << " damage, it has " << this->_hp << " HP left!" << std::endl;
-}
-
-void	ClapTrap::beRepared(unsigned int amount) {
-	if (this->_hp == 0)
-		return (this->noHP());
-	if (this->_energy-- == 0)
-		return (this->noEnergy());
-	this->_hp += amount;
-	if (this->_hp > MAX_HP)
-		this->_hp = MAX_HP;
-	std::cout << "ClapTrap " << this->_name << " repairs itself with " << amount << ", it now has ";
-	if (this->_hp != MAX_HP)
-		std::cout << this->_hp << " HP!" << std::endl;
+void	ClapTrap::takeDamage(int amount) {
+	if (_hp == 0)
+		return (noHP());
+	if (amount < 0)
+		return (beRepared(-1 * amount));
+	else if ((unsigned int)amount > _hp)
+		_hp = 0;
 	else
-		std::cout << MAX_HP << "(max) HP!" << std::endl;
+		_hp -= amount;
+	std::cout << "ClapTrap " << _name << " takes " << amount;
+	std::cout << " damage, it has " << _hp << " HP left!" << std::endl;
+}
+
+void	ClapTrap::beRepared(int amount) {
+	if (_hp == 0)
+		return (noHP());
+	if (amount < 0)
+		return (takeDamage(-1 * amount));
+	else if (_energy == 0)
+		return (noEnergy());
+	_energy--;
+	_hp += amount;
+	std::cout << "ClapTrap " << _name << " repairs itself with " << amount;
+	std::cout << ", it now has " << _hp << " HP!" << std::endl;
 }
 
 // O T H E R

@@ -6,7 +6,7 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/20 15:32:42 by ageels        #+#    #+#                 */
-/*   Updated: 2023/05/02 15:49:43 by ageels        ########   odam.nl         */
+/*   Updated: 2023/05/02 19:52:07 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,10 @@ int main(void) {
 		Serena.beRepared(10);
 		i++;
 	}
-
+	Serena.beRepared(10);
+	Serena.beRepared(10);
 	std::cout << "Hi this is " << Serena << std::endl;
 	std::cout << "Hi this is " << Copycat << std::endl;
 	std::cout << "Hi this is " << Serano << std::endl;
-	std::cout << "Hi this is \t" << a << std::endl;
+	std::cout << "Hi this is " << a << std::endl;
 }
-
-//void		(Harl::*harlptr[])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-//	std::string	complaints[] = {"DEBUG", "INFO", "WARNING", "ERROR"};

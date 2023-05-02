@@ -6,7 +6,7 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/20 15:32:42 by ageels        #+#    #+#                 */
-/*   Updated: 2023/05/02 15:49:03 by ageels        ########   odam.nl         */
+/*   Updated: 2023/05/02 20:05:30 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ int main(void) {
 		Sarah.beRepared(50);
 		i++;
 	}
+
+	//for (int j(0); j < 100; j++)
+	//	Frog.attack("the world");
 
 	std::cout << std::endl << "Hi this is " << Frag << std::endl;
 	std::cout << "Hi this is " << Frog << std::endl;

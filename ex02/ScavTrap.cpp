@@ -6,11 +6,13 @@
 /*   By: ageels <ageels@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/25 18:04:03 by ageels        #+#    #+#                 */
-/*   Updated: 2023/05/02 15:45:17 by ageels        ########   odam.nl         */
+/*   Updated: 2023/05/02 19:57:27 by ageels        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
+
+// P R I V A T E
 
 ScavTrap::ScavTrap() {
 	std::cout << "ScavTrap default constructor called" << std::endl;
@@ -20,16 +22,15 @@ ScavTrap::ScavTrap() {
 	this->_damage = 20;
 }
 
-// P U B L I C
-
-ScavTrap::ScavTrap(std::string *name) {
-	std::cout<< "ScavTrap constructor(*name) called" << std::endl;
-	if (name == NULL)
-		this->_name = "NULL";
-	this->_hp = 100;
-	this->_energy = 50;
-	this->_damage = 20;
+void	ScavTrap::noEnergy() {
+	std::cout << "ScavTrap " << _name << " has no energy left!" << std::endl;
 }
+
+void	ScavTrap::noHP() {
+	std::cout << "ScavTrap " << _name << " has no HP left!" << std::endl;
+}
+
+// P U B L I C
 
 ScavTrap::ScavTrap(std::string name) {
 	std::cout << "ScavTrap constructor(name) called, creating: " << name << std::endl;
@@ -63,35 +64,37 @@ void	ScavTrap::guardGate(void) {
 }
 
 void	ScavTrap::attack(const std::string &target) {
-	if (this->_hp == 0)
-		return (this->noHP());
-	if (this->_energy-- == 0)
-		return (this->noEnergy());
-	std::cout << "ScavTrap " << this->_name << " attacks " << target << ", causing ";
-	std::cout << this->_damage << " points of damage!" << std::endl;
+	if (_hp == 0)
+		return (noHP());
+	if (_energy == 0)
+		return (noEnergy());
+	_energy--;
+	std::cout << "ScavTrap " << _name << " attacks " << target << ", causing ";
+	std::cout << _damage << " points of damage!" << std::endl;
 }
 
-void	ScavTrap::takeDamage(unsigned int amount) {
-	if (this->_hp == 0)
-		return (this->noHP());
-	this->_hp -= amount;
-	if (this->_hp < 0)
-		this->_hp = 0;
-	std::cout << "ScavTrap " << this->_name << " takes " << amount;
-	std::cout << " damage, it has " << this->_hp << " HP left!" << std::endl;
-}
-
-void	ScavTrap::beRepared(unsigned int amount) {
-	if (this->_hp == 0)
-		return (this->noHP());
-	if (this->_energy-- == 0)
-		return (this->noEnergy());
-	this->_hp += amount;
-	if (this->_hp > MAX_HP)
-		this->_hp = MAX_HP;
-	std::cout << "ScavTrap " << this->_name << " repairs itself with " << amount << ", it now has ";
-	if (this->_hp != MAX_HP)
-		std::cout << this->_hp << " HP!" << std::endl;
+void	ScavTrap::takeDamage(int amount) {
+	if (_hp == 0)
+		return (noHP());
+	if (amount < 0)
+		return (beRepared(-1 * amount));
+	else if ((unsigned int)amount > _hp)
+		_hp = 0;
 	else
-		std::cout << MAX_HP << "(max) HP!" << std::endl;
+		_hp -= amount;
+	std::cout << "ScavTrap " << _name << " takes " << amount;
+	std::cout << " damage, it has " << _hp << " HP left!" << std::endl;
+}
+
+void	ScavTrap::beRepared(int amount) {
+	if (_hp == 0)
+		return (noHP());
+	if (amount < 0)
+		return (takeDamage(-1 * amount));
+	else if (_energy == 0)
+		return (noEnergy());
+	_energy--;
+	_hp += amount;
+	std::cout << "ScavTrap " << _name << " repairs itself with " << amount;
+	std::cout << ", it now has " << _hp << " HP!" << std::endl;
 }
